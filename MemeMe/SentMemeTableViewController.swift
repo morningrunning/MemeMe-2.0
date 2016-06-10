@@ -10,7 +10,6 @@ import UIKit
 
 class SentMemeTableViewController: UITableViewController {
     
-    
     var memes: [Meme] {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
@@ -73,8 +72,5 @@ class SentMemeTableViewController: UITableViewController {
         }
         
     }
-
-    
-    
     
 }

@@ -49,6 +49,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
     super.viewDidLoad()
     }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -92,8 +93,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         prefillTextFieldsWithDefault()
         
-        topToolBar.hidden = true
-        
         imageView.image = nil
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -129,7 +128,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             topToolBar.hidden = false
         } else{
             textFieldsToBeHidden(true)
-            topToolBar.hidden = true
         }
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -244,6 +242,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
+        
     }
     
     @IBAction func fontButtonPressed(sender: AnyObject) {
