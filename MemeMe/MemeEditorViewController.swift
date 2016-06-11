@@ -28,6 +28,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     //BOTTOM Toolbar Outlets
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var fontBarButton: UIBarButtonItem!
     
     //DELEGATES
     let memeMeTFDelegate = MemeMeTextFieldDelegate()
@@ -35,7 +36,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     //Local Variables
     var originalImage : UIImage?
 
-    
     //TEXT Field Attribute Settings
     let memeTextAttributes = [
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 30)!,
@@ -139,12 +139,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func shareActivityView(sender: AnyObject) {
-        
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image! , memeImage: generateMemedImage())
         let shareItems = [meme.memeImage]
-        
         let activityController = UIActivityViewController(activityItems: shareItems, applicationActivities: nil )
-        
         
         presentViewController(activityController, animated: true, completion: nil )
         
@@ -246,9 +243,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func fontButtonPressed(sender: AnyObject) {
-        
         let alert = UIAlertController(title: "Choose a Font", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        
         let impactFont = UIAlertAction(title: "Impact", style: .Default ) {(action) in
             self.textFieldsFontChange(UIFont(name: "Impact", size: 30)!)
         }
@@ -258,7 +253,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let helveticaFont = UIAlertAction(title: "Helvetica", style: .Default ) { (action) in
             self.textFieldsFontChange(UIFont(name: "Helvetica", size: 30)!)
         }
-        
         alert.addAction(impactFont)
         alert.addAction(arialFont)
         alert.addAction(helveticaFont)
@@ -271,7 +265,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomTextField.font = newFont
         
     }
-    
 
 }
 

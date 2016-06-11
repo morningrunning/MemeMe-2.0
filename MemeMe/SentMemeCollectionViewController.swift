@@ -13,7 +13,6 @@ class SentMemeCollectionViewController: UICollectionViewController{
     var memes: [Meme] {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

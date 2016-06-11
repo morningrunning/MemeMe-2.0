@@ -23,14 +23,12 @@ class MemeDetailViewController : UIViewController {
         //add "Edit" button for to Edit a stored Memes
         let rightBarButtonToAddMeme = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: #selector(MemeDetailViewController.editMeme))
         navigationItem.setRightBarButtonItem(rightBarButtonToAddMeme, animated: true)
-        
         imageView.contentMode = .ScaleAspectFit
         imageView.image = meme.memeImage
     }
     
     func editMeme(){
         let editMemeController = storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
-        
         editMemeController.originalImage = meme.originalImage
         
         //present MemeMe Edit ViewController modally
