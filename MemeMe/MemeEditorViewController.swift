@@ -244,9 +244,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func fontButtonPressed(sender: AnyObject) {
         let alert = UIAlertController(title: "Choose a Font", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        let impactFont = UIAlertAction(title: "Impact", style: .Default ) {(action) in
+        let impactFont = UIAlertAction(title: "Impact", style: .Default ) { (action) in
             self.textFieldsFontChange(UIFont(name: "Impact", size: 30)!)
         }
+        
         let arialFont = UIAlertAction(title: "Futura", style: .Default ) { (action) in
             self.textFieldsFontChange(UIFont(name: "Futura", size: 30)!)
         }
