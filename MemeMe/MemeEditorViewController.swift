@@ -10,6 +10,7 @@ import UIKit
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    
     //TOP Toolbar Outlets
     @IBOutlet weak var topToolBar: UIToolbar!
     @IBOutlet weak var topToolBarAction: UIBarButtonItem!
@@ -79,7 +80,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         prefillTextFieldsWithDefault()
         
         //remove the unnecessary TabBar
-        tabBarController?.tabBar.hidden = true
+        tabBarController?.tabBar.hidden = false
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -99,17 +100,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func pickImageFromAlbum(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
         pickImageFromSourceType(UIImagePickerControllerSourceType.PhotoLibrary)
     }
     
     @IBAction func pickImageFromCamera(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        presentViewController(imagePicker, animated: true, completion: nil)
         pickImageFromSourceType(UIImagePickerControllerSourceType.Camera)
     }
     
@@ -141,6 +135,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func shareActivityView(sender: AnyObject) {
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image! , memeImage: generateMemedImage())
         let shareItems = [meme.memeImage]
+        
         let activityController = UIActivityViewController(activityItems: shareItems, applicationActivities: nil )
         
         presentViewController(activityController, animated: true, completion: nil )
@@ -148,11 +143,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //using completion with Items Handler to save image only if action is not cancelled
         activityController.completionWithItemsHandler = {(activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
             
-            if (!completed){
-                return
+            if (completed){
+                UIImageWriteToSavedPhotosAlbum(meme.memeImage, nil, nil, nil)
+                self.save()
             }
-            UIImageWriteToSavedPhotosAlbum(meme.memeImage, nil, nil, nil)
         }
+
     }
     
     func generateMemedImage() -> UIImage
